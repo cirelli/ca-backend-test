@@ -3,6 +3,7 @@ using System;
 using Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240626191848_Billing")]
+    partial class Billing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,17 +126,6 @@ namespace Infraestructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("12081264-5645-407a-ae37-78d5da96fe59"),
-                            Address = "Rua Exemplo 1, 123",
-                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "cliente1@example.com",
-                            Name = "Cliente Exemplo 1",
-                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
@@ -156,22 +148,6 @@ namespace Infraestructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("48c6dc20-a943-4f8f-83ca-1e1cf094a683"),
-                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Produto 1",
-                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("48c6dc20-a943-4f8f-83ca-1e1cf094a612"),
-                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Produto 2",
-                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Billing", b =>
