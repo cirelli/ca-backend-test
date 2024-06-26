@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Domain.Dtos;
-using Domain.Entities;
 
 namespace Domain.AutoMapperProfiles;
 

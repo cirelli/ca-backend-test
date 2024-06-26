@@ -1,9 +1,7 @@
-﻿using Domain.Entities;
-
-namespace Domain.Abstractions.Repositories;
+﻿namespace Domain.Abstractions.Repositories;
 
 public interface ICustomerRepository
     : IEntityRepository<Customer>
 {
-    
+
 }

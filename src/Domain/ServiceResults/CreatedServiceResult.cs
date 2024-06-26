@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Domain.ServiceResults;
+﻿namespace Domain.ServiceResults;
 
 public interface ICreatedServiceResult
 {

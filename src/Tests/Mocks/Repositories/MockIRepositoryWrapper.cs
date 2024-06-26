@@ -1,5 +1,4 @@
-﻿using Domain.Abstractions.Repositories;
-using Moq;
+﻿using Moq;
 
 namespace Tests.Mocks.Repositories;
 
@@ -11,6 +10,9 @@ internal class MockIRepositoryWrapper
 
         mock.Setup(m => m.Customer)
             .Returns(() => MockICustomerRepository.GetMock().Object);
+
+        mock.Setup(m => m.Product)
+            .Returns(() => MockIProductRepository.GetMock().Object);
 
         mock.Setup(m => m.OpenTransactionAsync(It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);

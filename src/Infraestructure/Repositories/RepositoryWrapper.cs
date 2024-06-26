@@ -8,9 +8,13 @@ public class RepositoryWrapper(DataContext DataContext,
 {
     private IDbContextTransaction? transaction;
 
-    private ICustomerRepository? driverRepository;
+    private ICustomerRepository? customerRepository;
     public ICustomerRepository Customer
-        => driverRepository ??= new CustomerRepository(DataContext, Mapper);
+        => customerRepository ??= new CustomerRepository(DataContext, Mapper);
+
+    private IProductRepository? productRepository;
+    public IProductRepository Product
+        => productRepository ??= new ProductRepository(DataContext, Mapper);
 
     public async Task CommitAsync(CancellationToken cancellationToken)
     {

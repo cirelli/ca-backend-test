@@ -9,7 +9,7 @@ public abstract class BaseService
     protected static InvalidServiceResult Invalid(string message) => new(message);
 
     protected static NotFoundServiceResult NotFound(string message = "Not found!") => new(message);
-    
+
     protected static SuccessServiceResult Success() => new();
     protected static SuccessServiceResult<T> Success<T>(T value) => new(value);
 

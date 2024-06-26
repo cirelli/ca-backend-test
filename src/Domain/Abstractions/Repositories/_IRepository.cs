@@ -1,6 +1,4 @@
-﻿using Domain.Dtos;
-
-namespace Domain.Abstractions.Repositories;
+﻿namespace Domain.Abstractions.Repositories;
 
 public interface IRepository<T>
 {

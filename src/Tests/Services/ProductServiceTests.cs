@@ -1,15 +1,15 @@
 ﻿namespace Tests.Services;
 
-public class CustomerServiceTests
+public class ProductServiceTests
 {
     [Fact]
     public async Task WhenGettingAll_ThenAllReturn()
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var result = await service.GetAllAsync<Customer>(new Pagination(), CancellationToken.None);
+        var result = await service.GetAllAsync<Product>(new Pagination(), CancellationToken.None);
 
         Assert.NotNull(result);
         Assert.NotNull(result.Value);
@@ -21,18 +21,16 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var result = await service.GetByIdAsync<Customer>(MockICustomerRepository.Data[2].Id, CancellationToken.None);
+        var result = await service.GetByIdAsync<Product>(MockIProductRepository.Data[2].Id, CancellationToken.None);
 
         Assert.NotNull(result);
         Assert.True(result.IsSuccess);
-        Assert.IsAssignableFrom<SuccessServiceResult<Customer>>(result);
+        Assert.IsAssignableFrom<SuccessServiceResult<Product>>(result);
         Assert.NotNull(result.Value);
-        Assert.Equal(MockICustomerRepository.Data[2].Id, result.Value.Id);
-        Assert.Equal(MockICustomerRepository.Data[2].Name, result.Value.Name);
-        Assert.Equal(MockICustomerRepository.Data[2].Email, result.Value.Email);
-        Assert.Equal(MockICustomerRepository.Data[2].Address, result.Value.Address);
+        Assert.Equal(MockIProductRepository.Data[2].Id, result.Value.Id);
+        Assert.Equal(MockIProductRepository.Data[2].Name, result.Value.Name);
     }
 
     [Fact]
@@ -40,9 +38,9 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var result = await service.GetByIdAsync<Customer>(new Guid("86CFA85E-035A-454A-BC6F-AD0B5B8CD8E7"), CancellationToken.None);
+        var result = await service.GetByIdAsync<Product>(new Guid("86CFA85E-035A-454A-BC6F-AD0B5B8CD8E7"), CancellationToken.None);
 
         Assert.NotNull(result);
         Assert.False(result.IsSuccess);
@@ -54,20 +52,18 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var dto = new CustomerDTO(Name: "Test", Email: "test@test.com", Address: "test");
+        var dto = new ProductDTO(Name: "Test");
 
         var result = await service.CreateAsync(dto, CancellationToken.None);
 
         Assert.NotNull(result);
         Assert.True(result.IsSuccess);
-        Assert.IsAssignableFrom<SuccessServiceResult<Customer>>(result);
+        Assert.IsAssignableFrom<SuccessServiceResult<Product>>(result);
         Assert.NotNull(result.Value);
         Assert.NotEqual(Guid.Empty, result.Value.Id);
         Assert.Equal(dto.Name, result.Value.Name);
-        Assert.Equal(dto.Email, result.Value.Email);
-        Assert.Equal(dto.Address, result.Value.Address);
     }
 
     [Fact]
@@ -75,9 +71,9 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var dto = new CustomerDTO(Name: "", Email: "", Address: "");
+        var dto = new ProductDTO(Name: "");
 
         var result = await service.CreateAsync(dto, CancellationToken.None);
 
@@ -91,11 +87,11 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var dto = new CustomerDTO(Name: "Test", Email: "test@test.com", Address: "test");
+        var dto = new ProductDTO(Name: "Test");
 
-        var result = await service.UpdateAsync(MockICustomerRepository.Data[1].Id, dto, CancellationToken.None);
+        var result = await service.UpdateAsync(MockIProductRepository.Data[1].Id, dto, CancellationToken.None);
 
         Assert.NotNull(result);
         Assert.True(result.IsSuccess);
@@ -107,9 +103,9 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var dto = new CustomerDTO(Name: "Test", Email: "test@test.com", Address: "test");
+        var dto = new ProductDTO(Name: "Test");
 
         var result = await service.UpdateAsync(new Guid("86CFA85E-035A-454A-BC6F-AD0B5B8CD8E7"), dto, CancellationToken.None);
 
@@ -123,11 +119,11 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var dto = new CustomerDTO(Name: "", Email: "", Address: "");
+        var dto = new ProductDTO(Name: "");
 
-        var result = await service.UpdateAsync(MockICustomerRepository.Data[0].Id, dto, CancellationToken.None);
+        var result = await service.UpdateAsync(MockIProductRepository.Data[0].Id, dto, CancellationToken.None);
 
         Assert.NotNull(result);
         Assert.False(result.IsSuccess);
@@ -139,9 +135,9 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
-        var result = await service.DeleteAsync(MockICustomerRepository.Data[1].Id, CancellationToken.None);
+        var result = await service.DeleteAsync(MockIProductRepository.Data[1].Id, CancellationToken.None);
 
         Assert.NotNull(result);
         Assert.True(result.IsSuccess);
@@ -153,7 +149,7 @@ public class CustomerServiceTests
     {
         var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
         var mapper = AutoMapper.GetMapper();
-        var service = new CustomerService(repositoryWrapperMock.Object, mapper, new CustomerValidator());
+        var service = new ProductService(repositoryWrapperMock.Object, mapper, new ProductValidator());
 
         var result = await service.DeleteAsync(new Guid("86CFA85E-035A-454A-BC6F-AD0B5B8CD8E7"), CancellationToken.None);
 

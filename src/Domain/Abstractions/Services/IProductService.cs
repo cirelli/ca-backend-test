@@ -1,9 +1,9 @@
-﻿using DTO = Domain.Dtos.CustomerDTO;
-using TEntity = Domain.Entities.Customer;
+﻿using DTO = Domain.Dtos.ProductDTO;
+using TEntity = Domain.Entities.Product;
 
 namespace Domain.Abstractions.Services;
 
-public interface ICustomerService
+public interface IProductService
 {
     Task<ServiceResult<TModel>> GetByIdAsync<TModel>(Guid id, CancellationToken cancellationToken);
 

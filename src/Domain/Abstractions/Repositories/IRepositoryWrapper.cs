@@ -3,6 +3,7 @@
 public interface IRepositoryWrapper
 {
     ICustomerRepository Customer { get; }
+    IProductRepository Product { get; }
 
     Task OpenTransactionAsync(CancellationToken cancellationToken);
 

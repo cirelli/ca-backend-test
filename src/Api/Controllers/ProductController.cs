@@ -1,16 +1,16 @@
-﻿using DTO = Domain.Dtos.CustomerDTO;
-using Service = Domain.Abstractions.Services.ICustomerService;
-using ViewModel = Domain.Dtos.CustomerViewModel;
+﻿using DTO = Domain.Dtos.ProductDTO;
+using Service = Domain.Abstractions.Services.IProductService;
+using ViewModel = Domain.Dtos.ProductViewModel;
 
 namespace Api.Controllers;
 
 [ApiVersion("1")]
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
-public class CustomerController(IMapper mapper)
+public class ProductController(IMapper mapper)
     : BaseController
 {
-    private const string RouteNameById = "CustomerById";
+    private const string RouteNameById = "ProductById";
 
     [HttpGet]
     public async Task<ActionResult<List<ViewModel>>> GetAll([FromServices] Service service,
@@ -32,15 +32,15 @@ public class CustomerController(IMapper mapper)
 
     [HttpPost]
     public async Task<ActionResult<ViewModel>> Create([FromServices] Service service,
-                                                      [FromBody] DTO customer,
+                                                      [FromBody] DTO product,
                                                       CancellationToken cancellationToken)
     {
-        if (customer is null)
+        if (product is null)
         {
-            return BadRequest("Customer is null");
+            return BadRequest("Product is null");
         }
 
-        var result = await service.CreateAsync(customer, cancellationToken);
+        var result = await service.CreateAsync(product, cancellationToken);
 
         if (result.IsSuccess)
         {
@@ -53,15 +53,15 @@ public class CustomerController(IMapper mapper)
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromServices] Service service,
                                             Guid id,
-                                            [FromBody] DTO customer,
+                                            [FromBody] DTO product,
                                             CancellationToken cancellationToken)
     {
-        if (customer is null)
+        if (product is null)
         {
-            return BadRequest("Customer is null");
+            return BadRequest("Product is null");
         }
 
-        var result = await service.UpdateAsync(id, customer, cancellationToken);
+        var result = await service.UpdateAsync(id, product, cancellationToken);
         return HandleServiceResult(result);
     }
 

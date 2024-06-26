@@ -6,6 +6,6 @@ public record ValidationErrorServiceResult(IEnumerable<KeyValuePair<string, stri
     public ValidationErrorServiceResult(string key, string value)
         : this([new KeyValuePair<string, string>(key, value)])
     {
-        
+
     }
 }

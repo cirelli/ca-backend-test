@@ -1,8 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using Domain.Abstractions.Repositories;
-using Domain.Dtos;
-using Domain.Entities;
-using Moq;
+﻿using Moq;
 
 namespace Tests.Mocks.Repositories;
 

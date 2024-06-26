@@ -42,6 +42,7 @@ builder.Services.AddEndpointsApiExplorer()
 
     .AddScoped<IRepositoryWrapper, RepositoryWrapper>()
     .AddScoped<ICustomerService, CustomerService>()
+    .AddScoped<IProductService, ProductService>()
 
     .AddValidatorsFromAssemblyContaining<CustomerValidator>()
 
