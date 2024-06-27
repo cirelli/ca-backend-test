@@ -1,4 +1,5 @@
-﻿using ExternalApiClient.Models;
+﻿using ExternalApiClient.Exceptions;
+using ExternalApiClient.Models;
 using ExternalApiClient.Settings;
 using Microsoft.Extensions.Options;
 using RestSharp;
@@ -14,7 +15,18 @@ public class BillingClient(IOptions<ApiClientSettings> options)
         var request = new RestRequest("api/v1/billing");
         var response = await client.ExecuteGetAsync<List<Billing>>(request, cancellationToken);
 
-        response.ThrowIfError();
+        try
+        {
+            response.ThrowIfError();
+        }
+        catch (HttpRequestException ex)
+        {
+            throw new ApiNotFoundException("Error accessing billing API.", ex);
+        }
+        catch (Exception ex)
+        {
+            throw new ApiMalFuncException("Error getting data from billing API.", ex);
+        }
 
         return response.Data ?? [];
     }

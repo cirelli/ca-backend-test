@@ -15,18 +15,19 @@ public abstract class ServiceResultController
             ConflictServiceResult r => Conflict(r.Message),
             NotFoundServiceResult r => NotFound(r.Message),
             UnauthorizedServiceResult _ => Unauthorized(),
+            InternalErrorServiceResult r => StatusCode(500, r.Message),
             _ => throw new Exception("Unknown type of ServiceResult")
         };
     }
 
-    private BadRequestObjectResult InvalidResult(ValidationErrorServiceResult result)
+    private ActionResult InvalidResult(ValidationErrorServiceResult result)
     {
         foreach (var error in result.Errors)
         {
             ModelState.AddModelError(error.Key, error.Value);
         }
 
-        return BadRequest(ModelState);
+        return ValidationProblem();
     }
 
     protected CreatedAtRouteResult CreatedAtRoute<T>(IMapper mapper, string? routeName, BaseEntity value)

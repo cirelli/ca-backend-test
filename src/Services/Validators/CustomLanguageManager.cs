@@ -11,5 +11,6 @@ public class CustomLanguageManager
         AddTranslation("en", "MaximumLengthValidator", "maximum {MaxLength} character(s)!");
         AddTranslation("en", "ExactLengthValidator", "must have {MaxLength} character(s)!");
         AddTranslation("en", "EnumValidator", "invalid value!");
+        AddTranslation("en", "EmailValidator", "invalid email address!");
     }
 }

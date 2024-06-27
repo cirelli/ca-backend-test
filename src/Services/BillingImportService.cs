@@ -12,7 +12,16 @@ public class BillingImportService(IRepositoryWrapper RepositoryWrapper,
     public async Task<ServiceResult> ImportAsync(CancellationToken cancellationToken = default)
     {
         List<KeyValuePair<string, string>> errors = [];
-        var response = await billingClient.GetAllAsync(cancellationToken);
+        List<ExternalApiClient.Models.Billing> response;
+
+        try
+        {
+            response = await billingClient.GetAllAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            return new InternalErrorServiceResult(ex.Message);
+        }
 
         foreach (var billing in response)
         {
