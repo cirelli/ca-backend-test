@@ -1,3 +1,3 @@
 ﻿namespace Domain.Dtos;
 
-public record ProductDTO(string Name);
+public record ProductDTO(Guid Id, string Name);
