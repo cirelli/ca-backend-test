@@ -47,6 +47,7 @@ builder.Services.AddEndpointsApiExplorer()
     .AddScoped<ICustomerService, CustomerService>()
     .AddScoped<IProductService, ProductService>()
     .AddScoped<IBillingImportService, BillingImportService>()
+    .AddScoped<IBillingService, BillingService>()
 
     .AddScoped<BillingClient>()
 
