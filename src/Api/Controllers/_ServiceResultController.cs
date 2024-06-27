@@ -1,6 +1,6 @@
 ﻿namespace Api.Controllers;
 
-public abstract class BaseController
+public abstract class ServiceResultController
     : ControllerBase
 {
     protected ActionResult HandleServiceResult(IServiceResult result)

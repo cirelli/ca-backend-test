@@ -16,15 +16,15 @@ namespace Infraestructure.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "Address", "CreatedAt", "Email", "Name", "UpdatedAt" },
-                values: new object[] { new Guid("12081264-5645-407a-ae37-78d5da96fe59"), "Rua Exemplo 1, 123", new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "cliente1@example.com", "Cliente Exemplo 1", new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { new Guid("12081264-5645-407a-ae37-78d5da96fe59"), "Rua Exemplo 1, 123", new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc), "cliente1@example.com", "Cliente Exemplo 1", new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc) });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CreatedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("48c6dc20-a943-4f8f-83ca-1e1cf094a612"), new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "Produto 2", new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("48c6dc20-a943-4f8f-83ca-1e1cf094a683"), new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "Produto 1", new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("48c6dc20-a943-4f8f-83ca-1e1cf094a612"), new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc), "Produto 2", new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { new Guid("48c6dc20-a943-4f8f-83ca-1e1cf094a683"), new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc), "Produto 1", new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc) }
                 });
         }
 

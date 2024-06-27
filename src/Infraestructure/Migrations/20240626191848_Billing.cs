@@ -74,6 +74,12 @@ namespace Infraestructure.Migrations
                 name: "IX_Billings_CustomerId",
                 table: "Billings",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Billings_InvoiceNumber",
+                table: "Billings",
+                column: "InvoiceNumber",
+                unique: true);
         }
 
         /// <inheritdoc />

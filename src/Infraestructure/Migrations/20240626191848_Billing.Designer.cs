@@ -63,6 +63,9 @@ namespace Infraestructure.Migrations
 
                     b.HasIndex("CustomerId");
 
+                    b.HasIndex("InvoiceNumber")
+                        .IsUnique();
+
                     b.ToTable("Billings");
                 });
 

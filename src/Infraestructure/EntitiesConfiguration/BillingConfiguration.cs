@@ -11,5 +11,8 @@ public class BillingConfiguration : IEntityTypeConfiguration<Billing>
         builder.Property(p => p.Currency)
             .HasMaxLength(3)
             .IsRequired();
+
+        builder.HasIndex(p => p.InvoiceNumber)
+            .IsUnique();
     }
 }

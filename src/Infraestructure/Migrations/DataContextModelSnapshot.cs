@@ -60,6 +60,9 @@ namespace Infraestructure.Migrations
 
                     b.HasIndex("CustomerId");
 
+                    b.HasIndex("InvoiceNumber")
+                        .IsUnique();
+
                     b.ToTable("Billings");
                 });
 
@@ -129,10 +132,10 @@ namespace Infraestructure.Migrations
                         {
                             Id = new Guid("12081264-5645-407a-ae37-78d5da96fe59"),
                             Address = "Rua Exemplo 1, 123",
-                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "cliente1@example.com",
                             Name = "Cliente Exemplo 1",
-                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
@@ -161,16 +164,16 @@ namespace Infraestructure.Migrations
                         new
                         {
                             Id = new Guid("48c6dc20-a943-4f8f-83ca-1e1cf094a683"),
-                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Produto 1",
-                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = new Guid("48c6dc20-a943-4f8f-83ca-1e1cf094a612"),
-                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Produto 2",
-                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdatedAt = new DateTime(2024, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 

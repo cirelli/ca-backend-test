@@ -8,6 +8,10 @@ public class RepositoryWrapper(DataContext DataContext,
 {
     private IDbContextTransaction? transaction;
 
+    private IBillingRepository? billingRepository;
+    public IBillingRepository Billing
+        => billingRepository ??= new BillingRepository(DataContext, Mapper);
+
     private ICustomerRepository? customerRepository;
     public ICustomerRepository Customer
         => customerRepository ??= new CustomerRepository(DataContext, Mapper);
@@ -16,7 +20,7 @@ public class RepositoryWrapper(DataContext DataContext,
     public IProductRepository Product
         => productRepository ??= new ProductRepository(DataContext, Mapper);
 
-    public async Task CommitAsync(CancellationToken cancellationToken)
+    public async Task CommitAsync(CancellationToken cancellationToken = default)
     {
         if (transaction is not null)
         {
@@ -24,11 +28,11 @@ public class RepositoryWrapper(DataContext DataContext,
         }
     }
 
-    public async Task OpenTransactionAsync(CancellationToken cancellationToken)
+    public async Task OpenTransactionAsync(CancellationToken cancellationToken = default)
         => transaction = DataContext.Database.CurrentTransaction
             ?? await DataContext.Database.BeginTransactionAsync(cancellationToken);
 
-    public async Task RollbackAsync(CancellationToken cancellationToken)
+    public async Task RollbackAsync(CancellationToken cancellationToken = default)
     {
         if (transaction is not null)
         {
@@ -36,6 +40,6 @@ public class RepositoryWrapper(DataContext DataContext,
         }
     }
 
-    public async Task SaveAsync(CancellationToken cancellationToken)
+    public async Task SaveAsync(CancellationToken cancellationToken = default)
         => await DataContext.SaveChangesAsync(cancellationToken);
 }

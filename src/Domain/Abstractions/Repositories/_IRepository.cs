@@ -6,5 +6,5 @@ public interface IRepository<T>
 
     void Update(T entity);
 
-    Task<List<TModel>> GetAllAsync<TModel>(Pagination pagination, CancellationToken cancellationToken);
+    Task<List<TModel>> GetAllAsync<TModel>(Pagination pagination, CancellationToken cancellationToken = default);
 }

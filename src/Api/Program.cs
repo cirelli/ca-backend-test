@@ -1,4 +1,6 @@
 using Api.Extensions;
+using ExternalApiClient;
+using ExternalApiClient.Settings;
 using FluentValidation;
 using Infraestructure.Context;
 using Infraestructure.Repositories;
@@ -38,11 +40,17 @@ builder.Services.AddEndpointsApiExplorer()
             .UseNpgsql(connectionString);
     })
 
-    .AddAutoMapper(typeof(Domain.AutoMapperProfiles.CustomerProfile))
+    .AddAutoMapper(typeof(Domain.AutoMapperProfiles.CustomerProfile),
+                   typeof(Services.AutoMapperProfiles.BillingProfile))
 
     .AddScoped<IRepositoryWrapper, RepositoryWrapper>()
     .AddScoped<ICustomerService, CustomerService>()
     .AddScoped<IProductService, ProductService>()
+    .AddScoped<IBillingImportService, BillingImportService>()
+
+    .AddScoped<BillingClient>()
+
+    .Configure<ApiClientSettings>(builder.Configuration.GetSection(nameof(ApiClientSettings)))
 
     .AddValidatorsFromAssemblyContaining<CustomerValidator>()
 

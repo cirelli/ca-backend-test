@@ -2,14 +2,15 @@
 
 public interface IRepositoryWrapper
 {
+    IBillingRepository Billing { get; }
     ICustomerRepository Customer { get; }
     IProductRepository Product { get; }
 
-    Task OpenTransactionAsync(CancellationToken cancellationToken);
+    Task OpenTransactionAsync(CancellationToken cancellationToken = default);
 
-    Task CommitAsync(CancellationToken cancellationToken);
+    Task CommitAsync(CancellationToken cancellationToken = default);
 
-    Task RollbackAsync(CancellationToken cancellationToken);
+    Task RollbackAsync(CancellationToken cancellationToken = default);
 
-    Task SaveAsync(CancellationToken cancellationToken);
+    Task SaveAsync(CancellationToken cancellationToken = default);
 }

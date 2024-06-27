@@ -8,7 +8,7 @@ namespace Api.Controllers;
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
 public class ProductController(IMapper mapper)
-    : BaseController
+    : ServiceResultController
 {
     private const string RouteNameById = "ProductById";
 

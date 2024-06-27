@@ -13,7 +13,7 @@ public class ProductService(IRepositoryWrapper RepositoryWrapper,
     protected IRepository Repository => RepositoryWrapper.Product;
 
     public async Task<ServiceResult<TModel>> GetByIdAsync<TModel>(Guid id,
-                                                                  CancellationToken cancellationToken)
+                                                                  CancellationToken cancellationToken = default)
     {
         TModel? value = await Repository.GetByIdAsync<TModel>(id, cancellationToken);
 
@@ -26,7 +26,7 @@ public class ProductService(IRepositoryWrapper RepositoryWrapper,
     }
 
     public async Task<ServiceResult<List<TModel>>> GetAllAsync<TModel>(Pagination pagination,
-                                                                       CancellationToken cancellationToken)
+                                                                       CancellationToken cancellationToken = default)
     {
         pagination ??= new();
 
@@ -36,7 +36,7 @@ public class ProductService(IRepositoryWrapper RepositoryWrapper,
     }
 
     public async Task<ServiceResult<TEntity>> CreateAsync(DTO dto,
-                                                          CancellationToken cancellationToken)
+                                                          CancellationToken cancellationToken = default)
     {
         ValidationResult validationResult = await dtoValidator.ValidateAsync(dto, cancellationToken);
         if (!validationResult.IsValid)
@@ -53,7 +53,7 @@ public class ProductService(IRepositoryWrapper RepositoryWrapper,
 
     public async Task<ServiceResult> UpdateAsync(Guid id,
                                                  DTO dto,
-                                                 CancellationToken cancellationToken)
+                                                 CancellationToken cancellationToken = default)
     {
         TEntity? entity = await Repository.GetByIdAsync<TEntity>(id, cancellationToken);
         if (entity is null)
@@ -76,7 +76,7 @@ public class ProductService(IRepositoryWrapper RepositoryWrapper,
     }
 
     public async Task<ServiceResult> DeleteAsync(Guid id,
-                                                 CancellationToken cancellationToken)
+                                                 CancellationToken cancellationToken = default)
     {
         if (!(await Repository.ExistsAsync(id, cancellationToken)))
         {

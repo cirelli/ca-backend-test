@@ -18,12 +18,12 @@ public abstract class EntityRepository<TEntity>
     #endregion
 
 
-    public async Task<TModel?> GetByIdAsync<TModel>(Guid id, CancellationToken cancellationToken)
+    public async Task<TModel?> GetByIdAsync<TModel>(Guid id, CancellationToken cancellationToken = default)
         => await FirstOrDefaultAsync<TModel>(GetByIdQuery(id), cancellationToken);
 
-    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         => await GetByIdQuery(id).ExecuteDeleteAsync(cancellationToken);
 
-    public async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
         => await GetByIdQuery(id).AnyAsync(cancellationToken);
 }

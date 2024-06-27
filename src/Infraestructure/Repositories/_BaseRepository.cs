@@ -69,7 +69,7 @@ public abstract class BaseRepository<TEntity> where TEntity : BaseEntity
     public void Update(TEntity entity)
         => DbSet.Update(entity);
 
-    protected async Task<TModel?> FirstOrDefaultAsync<TModel>(IQueryable<TEntity> query, CancellationToken cancellationToken)
+    protected async Task<TModel?> FirstOrDefaultAsync<TModel>(IQueryable<TEntity> query, CancellationToken cancellationToken = default)
     {
         if (typeof(TModel) == typeof(TEntity))
         {
@@ -80,7 +80,7 @@ public abstract class BaseRepository<TEntity> where TEntity : BaseEntity
         return await mappedQuery.FirstOrDefaultAsync(cancellationToken);
     }
 
-    protected async Task<List<TModel>> ToListAsync<TModel>(IQueryable<TEntity> query, CancellationToken cancellationToken)
+    protected async Task<List<TModel>> ToListAsync<TModel>(IQueryable<TEntity> query, CancellationToken cancellationToken = default)
     {
         if (typeof(TModel) == typeof(TEntity))
         {
@@ -92,7 +92,7 @@ public abstract class BaseRepository<TEntity> where TEntity : BaseEntity
     }
 
 
-    public async Task<List<TModel>> GetAllAsync<TModel>(Pagination pagination, CancellationToken cancellationToken)
+    public async Task<List<TModel>> GetAllAsync<TModel>(Pagination pagination, CancellationToken cancellationToken = default)
     {
         var query = GetAllQuery();
 
